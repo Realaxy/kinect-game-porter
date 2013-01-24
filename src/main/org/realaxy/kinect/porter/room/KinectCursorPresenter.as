@@ -15,9 +15,11 @@ package org.realaxy.kinect.porter.room
 	
 	public class KinectCursorPresenter extends EventDispatcher
 	{
-		private static const DELTA_CLICK:Number = 10;
+		private static const DELTA_CLICK:Number = 20;
+		private static const LONG_DISTANCE_TO_CLEAR_CLICK:Number = 40;
+		
 		private static const CLICK_PROGRESS_DELTA:Number = 1000/60;
-		private static const TIME_TO_CLICK:Number = 3*1000;
+		private static const TIME_TO_CLICK:Number = 1*1000;
 		
 		[Inject]
 		public var kinectService:KinectService;
@@ -38,6 +40,7 @@ package org.realaxy.kinect.porter.room
 		private var _startTime:int;
 		private var _finishedTime:int;
 		private var _clickProgress:Number;
+		private var _lockClick:Boolean;
 
 		[PostConstruct]
 		public function initInstance():void
@@ -96,6 +99,8 @@ package org.realaxy.kinect.porter.room
 			else
 			{
 				dispatchEventWith(KinectCursorPresenterEvent.LOST);
+				
+				stopClick(true);
 			}
 		}
 		
@@ -130,15 +135,19 @@ package org.realaxy.kinect.porter.room
 			
 			if(_lastPosition)
 			{
-				trace("distance", getDistanse(_position, _lastPosition));
-				if(getDistanse(_position, _lastPosition) < DELTA_CLICK)
+//				trace(_position, _lastPosition);
+				var distance : int = getDistanse(_position, _lastPosition);
+				if(distance < DELTA_CLICK)
 				{
 					startClick();
 				}
+				else if(distance > LONG_DISTANCE_TO_CLEAR_CLICK)
+				{
+					clearClick();
+				}
 				else
 				{
-					stopClick();
-					dispatchEventWith(KinectCursorPresenterEvent.CLICK_BREAK);
+					stopClick(true);
 				}				
 			}
 			
@@ -147,9 +156,14 @@ package org.realaxy.kinect.porter.room
 			dispatchEventWith(KinectCursorPresenterEvent.UPDATE_POSITION);
 		}
 		
+		private function clearClick():void
+		{
+			_lockClick = false;
+		}
+		
 		private function startClick():void
 		{
-			if(_clicking)
+			if(_clicking || _lockClick)
 			{
 				return;
 			}
@@ -166,7 +180,7 @@ package org.realaxy.kinect.porter.room
 			dispatchEventWith(KinectCursorPresenterEvent.CLICK_START);
 		}
 		
-		private function stopClick():void
+		private function stopClick(breaked:Boolean):void
 		{
 			if(!_clicking)
 			{
@@ -176,6 +190,15 @@ package org.realaxy.kinect.porter.room
 			_clicking = false;
 			_timer.removeEventListener(TimerEvent.TIMER, onClickProgress);
 			_timer.stop();
+			
+			if(breaked)
+			{
+				dispatchEventWith(KinectCursorPresenterEvent.CLICK_BREAK);				
+			}
+			else
+			{
+				dispatchEventWith(KinectCursorPresenterEvent.CLICK_DONE);			
+			}
 		}
 		
 		private function onClickProgress(event:TimerEvent):void
@@ -191,8 +214,8 @@ package org.realaxy.kinect.porter.room
 		
 		private function clickDone():void
 		{
-			stopClick();
-			dispatchEventWith(KinectCursorPresenterEvent.CLICK_DONE);
+			stopClick(false);
+			_lockClick = true;
 		}
 		
 		private function getDistanse(point1:Point, point2:Point):Number

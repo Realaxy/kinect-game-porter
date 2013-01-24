@@ -64,7 +64,20 @@ package org.realaxy.kinect.porter.room
 		
 		private function refreshStatus():void
 		{
-			kinectSupported = Kinect.isSupported();
+			kinectSupported = isSupported();
+		}
+		
+		private function isSupportedSafe():Boolean
+		{
+			try
+			{
+				return Kinect.isSupported();	
+			}
+			catch(e:Error)
+			{
+				
+			}
+			return false;
 		}
 		
 		public function get users():Vector.<User>
@@ -113,7 +126,7 @@ package org.realaxy.kinect.porter.room
 		
 		public function isSupported():Boolean
 		{
-			return kinectSupported = Kinect.isSupported();
+			return kinectSupported = isSupportedSafe();
 		}
 		
 		public function get elevationAngle():Number
@@ -140,7 +153,7 @@ package org.realaxy.kinect.porter.room
 		
 		private function startFollowKinect():void
 		{
-			if (Kinect.isSupported()) {
+			if (isSupportedSafe()) {
 				
 				_device = Kinect.getDevice();
 				
