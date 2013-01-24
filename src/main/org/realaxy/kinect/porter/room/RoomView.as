@@ -27,6 +27,8 @@ package org.realaxy.kinect.porter.room
 		[Inject]
 		public var kinectControl:KinectControlView;
 		
+		[Inject]
+		public var gameStatusView:GameStatusView;
 		
 		[PostConstruct]
 		public function initInstance():void

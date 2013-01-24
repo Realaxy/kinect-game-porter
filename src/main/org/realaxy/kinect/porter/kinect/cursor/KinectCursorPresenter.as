@@ -1,4 +1,4 @@
-package org.realaxy.kinect.porter.room
+package org.realaxy.kinect.porter.kinect.cursor
 {
 	import com.as3nui.nativeExtensions.air.kinect.data.User;
 	
@@ -8,21 +8,19 @@ package org.realaxy.kinect.porter.room
 	import flash.utils.Timer;
 	import flash.utils.getTimer;
 	
+	import org.realaxy.kinect.porter.room.KinectService;
 	import org.realaxy.kinect.porter.room.events.KinectCursorPresenterEvent;
 	import org.realaxy.kinect.porter.room.events.KinectServiceEvent;
 	
 	import starling.events.EventDispatcher;
 	
-	public class KinectCursorPresenter extends EventDispatcher
+	public class KinectCursorPresenter extends EventDispatcher implements IKinectCursor
 	{
 		private static const DELTA_CLICK:Number = 20;
 		private static const LONG_DISTANCE_TO_CLEAR_CLICK:Number = 40;
 		
 		private static const CLICK_PROGRESS_DELTA:Number = 1000/60;
 		private static const TIME_TO_CLICK:Number = 1*1000;
-		
-		[Inject]
-		public var kinectService:KinectService;
 		
 		private var _mainUserActivate:Boolean = false;
 		private var _mainUserID:uint;
@@ -41,6 +39,9 @@ package org.realaxy.kinect.porter.room
 		private var _finishedTime:int;
 		private var _clickProgress:Number;
 		private var _lockClick:Boolean;
+		
+		[Inject]
+		public var kinectService:KinectService;
 
 		[PostConstruct]
 		public function initInstance():void

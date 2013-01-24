@@ -3,6 +3,7 @@ package org.realaxy.kinect.porter.room
 	import org.realaxy.kinect.porter.room.events.KinectServiceEvent;
 	import org.realaxy.kinect.porter.room.events.RoomEvent;
 	
+	import starling.events.Event;
 	import starling.events.EventDispatcher;
 
 	public class RoomPresentation extends EventDispatcher
@@ -12,6 +13,9 @@ package org.realaxy.kinect.porter.room
 		
 		[Inject]
 		public var kinectService:KinectService;
+		
+		[Inject]
+		public var sockerService:SocketService;
 		
 		public function RoomPresentation()
 		{
@@ -35,7 +39,7 @@ package org.realaxy.kinect.porter.room
 			kinectService.addEventListener(KinectServiceEvent.STATUS_CHANGE, onKinectServiceStatusChange);
 		}
 		
-		private function onKinectServiceStatusChange(event:KinectServiceEvent):void
+		private function onKinectServiceStatusChange(event:Event):void
 		{
 			dispatchEventWith(RoomEvent.KINECT_STATUS_CHANGE);
 		}

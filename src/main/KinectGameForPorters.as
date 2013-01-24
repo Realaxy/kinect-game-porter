@@ -46,8 +46,8 @@ package
 			try
 			{
 				_starling.viewPort = viewPort;
+			}catch(error:Error) {
 			}
-			catch(error:Error) {}
 			//_starling.showStatsAt(HAlign.LEFT, VAlign.BOTTOM);
 		}
 		

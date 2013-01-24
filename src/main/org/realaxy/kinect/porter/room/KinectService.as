@@ -54,7 +54,7 @@ package org.realaxy.kinect.porter.room
 			
 			_kinectSupported = value;
 			
-			dispatchEvent(new KinectServiceEvent(KinectServiceEvent.STATUS_CHANGE));
+			dispatchEventWith(KinectServiceEvent.STATUS_CHANGE);
 		}
 		
 		private function followKinectStatus():void
@@ -85,7 +85,7 @@ package org.realaxy.kinect.porter.room
 			return _device.users;
 		}
 		
-		public function getNearestUser():User
+		public function getNearestUser(withSkeleton:Boolean = true):User
 		{
 			var nearestUser:User;
 			var nearestUserZ:Number = Number.MAX_VALUE;
@@ -94,7 +94,7 @@ package org.realaxy.kinect.porter.room
 			{
 				var user:User = users[index];
 				var newZ : Number = user.position.world.z; 
-				if(nearestUserZ > newZ)
+				if(nearestUserZ > newZ && (user.hasSkeleton || !withSkeleton))
 				{
 					nearestUserZ = newZ;
 					nearestUser = user;

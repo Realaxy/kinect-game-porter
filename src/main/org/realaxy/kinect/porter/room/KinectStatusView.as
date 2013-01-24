@@ -58,8 +58,6 @@ package org.realaxy.kinect.porter.room
 			
 			_status.text = value?"has kinect":"hasn't kinect";
 			_status.validate();
-			
-			trace("has Kinect", value);
 		}
 	}
 }

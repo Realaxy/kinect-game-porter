@@ -1,4 +1,4 @@
-package org.realaxy.kinect.porter.room
+package org.realaxy.kinect.porter.kinect.cursor
 {
 	import com.eclecticdesignstudio.motion.Actuate;
 	
@@ -53,15 +53,12 @@ package org.realaxy.kinect.porter.room
 		
 		private function onClickStart(event:Event):void
 		{
-			trace("onClickStart");
 			_catchedTimer.visible = true;
 		}
 		
 		private function onClickProgress(event:Event):void
 		{
-			trace("onClickProgress", kinectCursorPresenter.clickProgress.toFixed(2));
 			_catchedTimer.text = kinectCursorPresenter.clickProgress.toFixed(2);
-			//_catchedTimer.width = 64;
 			_catchedTimer.validate();
 			clickAnimation();
 		}
@@ -77,13 +74,11 @@ package org.realaxy.kinect.porter.room
 		
 		private function onClickDone(event:Event):void
 		{
-			trace("onClickDone"); 
 			_catchedTimer.visible = false;
 		}
 		
 		private function onClickBreak(event:Event):void
 		{
-			trace("onClickBreak");
 			_catchedTimer.visible = false;
 		}
 		

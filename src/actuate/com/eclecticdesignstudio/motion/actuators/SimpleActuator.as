@@ -43,10 +43,8 @@
 			if (!shape) {
 				
 				shape = new Shape ();
-				shape.addEventListener (Event.ENTER_FRAME, shape_onEnterFrame);
-				
-			}
-			
+				shape.addEventListener (Event.ENTER_FRAME, shape_onEnterFrame);				
+			}			
 		}
 		
 		
