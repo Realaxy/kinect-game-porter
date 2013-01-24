@@ -5,6 +5,7 @@ package org.realaxy.kinect.porter.room
 	
 	import starling.events.Event;
 	import starling.events.EventDispatcher;
+	import org.realaxy.kinect.porter.kinect.KinectService;
 
 	public class RoomPresentation extends EventDispatcher
 	{

@@ -7,6 +7,7 @@ package org.realaxy.kinect.porter.room
 	
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import org.realaxy.kinect.porter.kinect.KinectService;
 	
 	public class KinectControlView extends Sprite
 	{

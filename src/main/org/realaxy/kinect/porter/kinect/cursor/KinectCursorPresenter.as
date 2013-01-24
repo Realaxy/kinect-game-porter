@@ -8,7 +8,7 @@ package org.realaxy.kinect.porter.kinect.cursor
 	import flash.utils.Timer;
 	import flash.utils.getTimer;
 	
-	import org.realaxy.kinect.porter.room.KinectService;
+	import org.realaxy.kinect.porter.kinect.KinectService;
 	import org.realaxy.kinect.porter.room.events.KinectCursorPresenterEvent;
 	import org.realaxy.kinect.porter.room.events.KinectServiceEvent;
 	

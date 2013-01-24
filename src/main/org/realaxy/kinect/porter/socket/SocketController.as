@@ -7,7 +7,7 @@ package org.realaxy.kinect.porter.socket
 	import flash.utils.Timer;
 	
 	import org.realaxy.kinect.porter.kinect.KinectUserSerialize;
-	import org.realaxy.kinect.porter.room.KinectService;
+	import org.realaxy.kinect.porter.kinect.KinectService;
 	import org.realaxy.kinect.porter.room.SocketService;
 	import org.realaxy.kinect.porter.room.events.KinectServiceEvent;
 	
@@ -80,7 +80,7 @@ package org.realaxy.kinect.porter.socket
 				trace("result", result);				
 			}
 			
-			//socketService.flush();			
+			socketService.flush();			
 		}
 	}
 }

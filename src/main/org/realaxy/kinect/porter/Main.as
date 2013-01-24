@@ -10,7 +10,7 @@ package org.realaxy.kinect.porter
 	import org.realaxy.kinect.porter.room.KinectControlView;
 	import org.realaxy.kinect.porter.room.KinectDepthView;
 	import org.realaxy.kinect.porter.room.KinectRGBView;
-	import org.realaxy.kinect.porter.room.KinectService;
+	import org.realaxy.kinect.porter.kinect.KinectService;
 	import org.realaxy.kinect.porter.room.KinectStatusView;
 	import org.realaxy.kinect.porter.room.KinectUsersStatusView;
 	import org.realaxy.kinect.porter.room.RoomModel;

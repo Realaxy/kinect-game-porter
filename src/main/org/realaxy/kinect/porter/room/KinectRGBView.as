@@ -6,6 +6,7 @@ package org.realaxy.kinect.porter.room
 	
 	import starling.display.Sprite;
 	import starling.textures.Texture;
+	import org.realaxy.kinect.porter.kinect.KinectService;
 	
 	public class KinectRGBView extends Sprite
 	{
