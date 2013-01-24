@@ -24,10 +24,9 @@ package org.realaxy.kinect.porter.room
 		[Inject]
 		public var usersStatus:KinectUsersStatusView;
 		
-		public function RoomView() 
-		{
-			
-		}
+		[Inject]
+		public var kinectControl:KinectControlView;
+		
 		
 		[PostConstruct]
 		public function initInstance():void
@@ -45,7 +44,11 @@ package org.realaxy.kinect.porter.room
 			
 			addChild(usersStatus);
 			usersStatus.x = 0;
-			usersStatus.y = 300;  
+			usersStatus.y = 280;
+			
+			addChild(kinectControl);
+			kinectControl.x = 0;
+			kinectControl.y = 300;
 		}
 	}
 }

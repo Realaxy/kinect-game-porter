@@ -3,6 +3,7 @@ package org.realaxy.kinect.porter
 	import feathers.controls.Button;
 	import feathers.themes.MetalWorksMobileTheme;
 	
+	import org.realaxy.kinect.porter.room.KinectControlView;
 	import org.realaxy.kinect.porter.room.KinectCursorPresenter;
 	import org.realaxy.kinect.porter.room.KinectCursorView;
 	import org.realaxy.kinect.porter.room.KinectDepthView;
@@ -86,6 +87,7 @@ package org.realaxy.kinect.porter
 			_injector.map(KinectUsersStatusView);
 			_injector.map(KinectCursorView).asSingleton();
 			_injector.map(KinectCursorPresenter).asSingleton();
+			_injector.map(KinectControlView);
 			
 			_injector.injectInto(this);
 		}

@@ -4,6 +4,7 @@ package org.realaxy.kinect.porter.room
 	import com.as3nui.nativeExtensions.air.kinect.KinectSettings;
 	import com.as3nui.nativeExtensions.air.kinect.data.User;
 	import com.as3nui.nativeExtensions.air.kinect.events.CameraImageEvent;
+	import com.as3nui.nativeExtensions.air.kinect.events.DeviceEvent;
 	import com.as3nui.nativeExtensions.air.kinect.events.PointCloudEvent;
 	import com.as3nui.nativeExtensions.air.kinect.events.UserEvent;
 	
@@ -115,6 +116,16 @@ package org.realaxy.kinect.porter.room
 			return kinectSupported = Kinect.isSupported();
 		}
 		
+		public function get elevationAngle():Number
+		{
+			return _device.cameraElevationAngle; 
+		}
+		
+		public function set elevationAngle(value:Number):void
+		{
+			_device.cameraElevationAngle = value;
+		}
+		
 		public function start():void
 		{
 			if(_started)
@@ -141,6 +152,8 @@ package org.realaxy.kinect.porter.room
 				_device.addEventListener(UserEvent.USERS_UPDATED, onUsersUpdated);
 				_device.addEventListener(UserEvent.USERS_WITH_SKELETON_ADDED, onUsersWithSkeletonAdded);
 				_device.addEventListener(UserEvent.USERS_WITH_SKELETON_REMOVED, onUsersWithSkeletonRemoved);
+				_device.addEventListener(DeviceEvent.STARTED, onDeviceStared);
+				_device.addEventListener(DeviceEvent.STOPPED, onDeviceStoped);
 				
 				var settings:KinectSettings = new KinectSettings();
 				settings.depthEnabled = true;
@@ -154,6 +167,16 @@ package org.realaxy.kinect.porter.room
 				_device.start(settings);
 			}
 			
+		}
+		
+		protected function onDeviceStoped(event:DeviceEvent):void
+		{
+			dispatchEventWith(KinectServiceEvent.STOP);
+		}
+		
+		protected function onDeviceStared(event:DeviceEvent):void
+		{
+			dispatchEventWith(KinectServiceEvent.START);
 		}
 		
 		public function stop():void

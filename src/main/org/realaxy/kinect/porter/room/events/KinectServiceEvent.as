@@ -10,6 +10,10 @@ package org.realaxy.kinect.porter.room.events
 		
 		public static const USERS_CHANGE:String = "usersChange";
 		
+		public static const START:String = "start";
+		public static const STOP:String = "stop";
+		
+		
 		public function KinectServiceEvent(type:String, bubbles:Boolean=false, data:Object=null)
 		{
 			super(type, bubbles, data);
