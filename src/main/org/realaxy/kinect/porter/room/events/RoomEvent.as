@@ -1,4 +1,4 @@
-package org.realaxy.kinect.porter.room
+package org.realaxy.kinect.porter.room.events
 {
 	import starling.events.Event;
 	

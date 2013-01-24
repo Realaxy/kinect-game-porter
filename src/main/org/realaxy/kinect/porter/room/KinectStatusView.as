@@ -3,6 +3,7 @@ package org.realaxy.kinect.porter.room
 	import feathers.controls.Label;
 	
 	import starling.display.Sprite;
+	import org.realaxy.kinect.porter.room.events.RoomEvent;
 	
 	public class KinectStatusView extends Sprite
 	{
