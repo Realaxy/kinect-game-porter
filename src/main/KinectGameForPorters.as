@@ -6,14 +6,14 @@ package
 	import flash.system.Capabilities;
 	
 	import org.realaxy.kinect.porter.EmbeddedAssets;
-	import org.realaxy.kinect.porter.Game;
+	import org.realaxy.kinect.porter.Main;
 	
 	import starling.core.Starling;
 	import starling.textures.Texture;
 	import starling.utils.AssetManager;
 	
 	[SWF(frameRate="60", width="800", height="600", backgroundColor="#222222"))]
-	public class Main extends Sprite
+	public class KinectGameForPorters extends Sprite
 	{
 		// Startup image for SD screens
 		[Embed(source="../../assets/background.jpg")]
@@ -21,7 +21,7 @@ package
 		
 		private var _starling:Starling;
 		
-		public function Main()
+		public function KinectGameForPorters()
 		{
 			start();
 		}
@@ -31,7 +31,7 @@ package
 			Starling.multitouchEnabled = true; // for Multitouch Scene
 			Starling.handleLostContext = true; // required on Windows, needs more memory
 			
-			_starling = new Starling(Game, stage);
+			_starling = new Starling(Main, stage);
 			_starling.simulateMultitouch = true;
 			_starling.enableErrorChecking = Capabilities.isDebugger;
 			_starling.start();

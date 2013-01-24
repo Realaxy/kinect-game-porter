@@ -13,7 +13,7 @@ package org.realaxy.kinect.porter
 	import starling.display.Sprite;
 	import starling.events.Event;
 	
-	public class Game extends Sprite
+	public class Main extends Sprite
 	{
 		private var _kinectConnect : KinectService = new KinectService();
 		
@@ -25,7 +25,7 @@ package org.realaxy.kinect.porter
 		private var _theme:MetalWorksMobileTheme;
 		private var _button:Button;
 		
-		public function Game() 
+		public function Main() 
 		{
 			//we'll initialize things after we've been added to the stage
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
