@@ -2,9 +2,6 @@ package org.realaxy.kinect.porter.room
 {
 	import com.eclecticdesignstudio.motion.Actuate;
 	
-	import flash.events.ActivityEvent;
-	import flash.utils.setTimeout;
-	
 	import feathers.controls.Label;
 	
 	import org.realaxy.kinect.porter.room.events.KinectCursorPresenterEvent;
@@ -51,8 +48,7 @@ package org.realaxy.kinect.porter.room
 			_catchedTimer.x = 64;
 			_catchedTimer.y = 32;
 			_catchedTimer.visible = false;
-			addChild(_catchedTimer);
-			
+			addChild(_catchedTimer);			
 		}
 		
 		private function onClickStart(event:Event):void
@@ -74,7 +70,9 @@ package org.realaxy.kinect.porter.room
 		{
 			_image.width = 60;
 			_image.height = 60;
-			Actuate.tween(_image, 0.2, {width: 54, height: 54});
+			Actuate.tween(_image, 0.3, {width: 54, height: 54}).onComplete(function():void{
+				Actuate.tween(_image, 0.3, {width: 64, height: 64});
+			});
 		}
 		
 		private function onClickDone(event:Event):void

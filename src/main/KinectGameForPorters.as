@@ -12,7 +12,6 @@ package
 	[SWF(frameRate="60", width="800", height="600", backgroundColor="#222222"))]
 	public class KinectGameForPorters extends Sprite
 	{
-		
 		private var _starling:Starling;
 		
 		public function KinectGameForPorters()
