@@ -13,6 +13,7 @@ package org.realaxy.kinect.porter.room
 		public var kinectService:KinectService;
 		
 		private var _image:TiledImage;
+		private var _texture:Texture;
 		
 		public function KinectDepthView()
 		{
@@ -34,12 +35,15 @@ package org.realaxy.kinect.porter.room
 			
 			if(_image == null)
 			{
-				_image = new TiledImage(starling.textures.Texture.fromBitmapData(kinectService.depth));
+				_texture = starling.textures.Texture.fromBitmapData(kinectService.depth, false); 
+				_image = new TiledImage(_texture);
 				addChild(_image);
 			}
 			else
 			{
-				_image.texture = starling.textures.Texture.fromBitmapData(kinectService.depth);				
+				_texture.dispose();
+				_texture = starling.textures.Texture.fromBitmapData(kinectService.depth, false);
+				_image.texture = _texture; 				
 			}
 		}
 	}

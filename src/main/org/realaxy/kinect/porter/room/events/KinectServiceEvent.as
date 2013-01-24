@@ -5,8 +5,10 @@ package org.realaxy.kinect.porter.room.events
 	public class KinectServiceEvent extends Event
 	{
 		public static const STATUS_CHANGE:String = "statusChange";
-		public static const DEPTH_VIEW_CHANGE:String = "depthViewChange"
-		public static const RGB_VIEW_CHANGE:String = "rgbViewChange"
+		public static const DEPTH_VIEW_CHANGE:String = "depthViewChange";
+		public static const RGB_VIEW_CHANGE:String = "rgbViewChange";
+		
+		public static const USERS_CHANGE:String = "usersChange";
 		
 		public function KinectServiceEvent(type:String, bubbles:Boolean=false, data:Object=null)
 		{

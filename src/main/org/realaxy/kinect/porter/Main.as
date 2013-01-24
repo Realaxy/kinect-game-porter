@@ -3,10 +3,13 @@ package org.realaxy.kinect.porter
 	import feathers.controls.Button;
 	import feathers.themes.MetalWorksMobileTheme;
 	
+	import org.realaxy.kinect.porter.room.KinectCursorPresenter;
+	import org.realaxy.kinect.porter.room.KinectCursorView;
 	import org.realaxy.kinect.porter.room.KinectDepthView;
 	import org.realaxy.kinect.porter.room.KinectRGBView;
 	import org.realaxy.kinect.porter.room.KinectService;
 	import org.realaxy.kinect.porter.room.KinectStatusView;
+	import org.realaxy.kinect.porter.room.KinectUsersStatusView;
 	import org.realaxy.kinect.porter.room.RoomModel;
 	import org.realaxy.kinect.porter.room.RoomPresentation;
 	import org.realaxy.kinect.porter.room.RoomView;
@@ -21,6 +24,9 @@ package org.realaxy.kinect.porter
 		
 		[Inject]
 		public var myRoomView:RoomView;
+		
+		[Inject]
+		public var cursorView:KinectCursorView;
 		
 		private var _injector:Injector;
 		
@@ -47,15 +53,15 @@ package org.realaxy.kinect.porter
 			//all components are properly skinned.
 			_theme = new MetalWorksMobileTheme(this.stage);
 			
-			//create a button and give it some text to display.
-			_button = new Button();
-			_button.label = "Click Me";			
-			addChild(_button);			
-			_button.validate();
-			
-			//center the button
-			_button.x = (this.stage.stageWidth - _button.width) / 2;
-			_button.y = (this.stage.stageHeight - _button.height) / 2;
+//			//create a button and give it some text to display.
+//			_button = new Button();
+//			_button.label = "Click Me";			
+//			addChild(_button);			
+//			_button.validate();
+//			
+//			//center the button
+//			_button.x = (this.stage.stageWidth - _button.width) / 2;
+//			_button.y = (this.stage.stageHeight - _button.height) / 2;
 			
 			initInjector();
 			
@@ -77,6 +83,9 @@ package org.realaxy.kinect.porter
 			_injector.map(KinectStatusView);
 			_injector.map(KinectDepthView);
 			_injector.map(KinectRGBView);
+			_injector.map(KinectUsersStatusView);
+			_injector.map(KinectCursorView).asSingleton();
+			_injector.map(KinectCursorPresenter).asSingleton();
 			
 			_injector.injectInto(this);
 		}
@@ -84,7 +93,9 @@ package org.realaxy.kinect.porter
 		[PostConstruct]
 		public function initInstance():void
 		{
-			addChild(myRoomView);			
+			addChild(myRoomView);
+			
+			addChild(cursorView);			
 		}
 	}
 }

@@ -21,6 +21,9 @@ package org.realaxy.kinect.porter.room
 		[Inject]
 		public var depthView:KinectDepthView;
 		
+		[Inject]
+		public var usersStatus:KinectUsersStatusView;
+		
 		public function RoomView() 
 		{
 			
@@ -31,12 +34,18 @@ package org.realaxy.kinect.porter.room
 		{
 			presentation.startKinect();
 			
-			addChild(kinectStatusView);
+			//addChild(kinectStatusView);
+			
 			addChild(rgbView);
 			rgbView.y = 20; 
+			
 			addChild(depthView);
 			depthView.x = 320;
 			depthView.y = 20;
+			
+			addChild(usersStatus);
+			usersStatus.x = 0;
+			usersStatus.y = 300;  
 		}
 	}
 }

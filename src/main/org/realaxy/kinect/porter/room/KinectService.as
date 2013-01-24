@@ -71,6 +71,25 @@ package org.realaxy.kinect.porter.room
 			return _device.users;
 		}
 		
+		public function getNearestUser():User
+		{
+			var nearestUser:User;
+			var nearestUserZ:Number = Number.MAX_VALUE;
+			var users:Vector.<User> = _device.users; 
+			for(var index:int = 0, count:int = users.length; index < count; index++) 
+			{
+				var user:User = users[index];
+				var newZ : Number = user.position.world.z; 
+				if(nearestUserZ > newZ)
+				{
+					nearestUserZ = newZ;
+					nearestUser = user;
+				}				
+			}
+			
+			return user;
+		}
+		
 		public function get depth():BitmapData
 		{
 			return _depthBitmap;
@@ -86,6 +105,10 @@ package org.realaxy.kinect.porter.room
 			return _rgbBitmap;
 		}
 		
+		public function get rgbResolution():Point
+		{
+			return _rgbResolution;
+		}
 		
 		public function isSupported():Boolean
 		{
@@ -184,20 +207,14 @@ package org.realaxy.kinect.porter.room
 			
 			_invalideUser = true;
 			
-			var users:Vector.<User> = _device.users;
-			
-			for(var index:int = 0, count:int = users.length; index < count; index++)
-			{
-				var user:User = users[index];
-				showUser(user);
-			}
+			setInterval(validateUsers, 0);
 		}
 		
-		private function showUser(user:User):void
+		private function validateUsers():void
 		{
-			trace("user.framework: " + user.framework);
-			trace("user.hasSkeleton:" + user.hasSkeleton);
-			//user.position.
+			dispatchEventWith(KinectServiceEvent.USERS_CHANGE);
+			
+			_invalideUser = false;
 		}
 		
 		protected function onRGBImage(event:CameraImageEvent):void
@@ -207,7 +224,6 @@ package org.realaxy.kinect.porter.room
 		
 		protected function onPointCloud(event:PointCloudEvent):void
 		{
-			trace("pointCloudHandler");
 			event.pointCloudRegions;
 			event.pointCloudData;
 		}
