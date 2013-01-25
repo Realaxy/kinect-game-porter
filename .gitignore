@@ -9,3 +9,4 @@ bin-release/
 .project
 .actionScriptProperties
 .flexProperties
+.FlexUnitSettings
